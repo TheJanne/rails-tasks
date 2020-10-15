@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    @tasks = Task.where(project_id: params["project_id"])
 
     render json: @tasks
   end
@@ -26,6 +26,7 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1
   def update
+    
     if @task.update(task_params)
       render json: @task
     else
